@@ -1,0 +1,16 @@
+{
+  "status": "SUCCESS",
+  "timestamp": "2026-10-03T04:06:05.937Z",
+  "environment": "production",
+  "durationMs": 41,
+  "artifacts": {
+    "outputDirectory": "dist/",
+    "totalSizeBytes": 3188051,
+    "totalSizeKB": "3113.33",
+    "entrypoint": "dist/index.html"
+  },
+  "system": {
+    "nodeVersion": "v26.10.0",
+    "platform": "win32"
+  }
+}

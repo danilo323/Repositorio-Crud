@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de Integración Continua - Sistema de Gestión de Productos</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #38bdf8;
+            --success: #10b981;
+            --danger: #ef4444;
+            --border: #334155;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 30px 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+        }
+        .badge {
+            background-color: var(--success);
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+        .meta-info {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+        }
+        .stat-card .value {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .stat-card .label {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .table-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 14px;
+        }
+        th, td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            background-color: rgba(255,255,255,0.03);
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        .status-pill {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .status-pass {
+            background-color: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+        .status-fail {
+            background-color: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        .footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 13px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1>Pipeline de Integración Continua (CI)</h1>
+                <div class="meta-info">Ejecutado con éxito | GitHub Actions & Local Runner</div>
+            </div>
+            <div class="badge">APROBADO (100%)</div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="value" style="color: var(--success);">100%</div>
+                <div class="label">Tasa de Aprobación</div>
+            </div>
+            <div class="stat-card">
+                <div class="value">15</div>
+                <div class="label">Pruebas Totales</div>
+            </div>
+            <div class="stat-card">
+                <div class="value" style="color: var(--success);">15</div>
+                <div class="label">Aprobadas</div>
+            </div>
+            <div class="stat-card">
+                <div class="value" style="color: var(--text-muted);">0</div>
+                <div class="label">Fallidas</div>
+            </div>
+            <div class="stat-card">
+                <div class="value">18ms</div>
+                <div class="label">Tiempo de Test</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Resumen del Proceso de Build</h2>
+        <div class="table-card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Paso del Pipeline</th>
+                        <th>Estado</th>
+                        <th>Duración</th>
+                        <th>Salida</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Compilación y Empaquetado (Build)</strong></td>
+                        <td><span class="status-pill status-pass">COMPLETADO</span></td>
+                        <td>42 ms</td>
+                        <td>dist/ (220.84 KB)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Suite de Pruebas Automatizadas</strong></td>
+                        <td><span class="status-pill status-pass">APROBADO</span></td>
+                        <td>18 ms</td>
+                        <td>15 pasadas / 0 fallidas</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Generación de Reportes</strong></td>
+                        <td><span class="status-pill status-pass">COMPLETADO</span></td>
+                        <td>&lt; 10 ms</td>
+                        <td>HTML, Markdown y JSON</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="section-title">Resultados de las Pruebas Unitarias</h2>
+        <div class="table-card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Caso de Prueba</th>
+                        <th>Estado</th>
+                        <th>Tiempo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Debe aceptar nombre válido que inicia con mayúscula y tiene entre 4 y 9 letras (ej: 'Laptop')</td>
+                        <td><span class="status-pill status-pass">APROBADO</span></td>
+                        <td>1 ms</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Debe rechazar nombre que inicia con minúscula (ej: 'laptop')</td>
+                        <td><span class="status-pill status-pass">APROBADO</span></td>
+                        <td>1 ms</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Debe rechazar nombre con menos de 4 caracteres (ej: 'Pc')</td>
+                        <td><span class="status-pill status-pass">APROBADO</span></td>
+                        <td>1 ms</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Debe rechazar nombre con más de 9 caracteres (ej: 'Computadora')</td>
+                        <td><span class="status-pill status-pass">APROBADO</span></td>
+                        <td>1 ms</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Debe rechazar nombres con números, espacios o caracteres especiales</td>
+                        <td><span class="status-pill status-pass">APROBADO</span></td>
+                        <td>1 ms</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Debe rechazar valores nulos, vacíos o indefinidos</td>
+                        <td><span class="status-pill status-pass">APROBADO</span></td>
+                        <td>1 ms</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Debe aceptar precios positivos enteros y decimales válidos</td>
+                        <td><span class="status-pill status-pass">APROBADO</span></td>
+                        <td>1 ms</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Debe rechazar precios iguales a cero o negativos</td>
+                        <td><span class="status-pill status-pass">APROBADO</span></td>
+                        <td>1 ms</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Debe rechazar valores de precio no numéricos</td>
+                        <td><span class="status-pill status-pass">APROBADO</span></td>
+                        <td>1 ms</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Debe aceptar categorías válidas con longitud entre 3 y 15 letras y espacios</td>
+                        <td><span class="status-pill status-pass">APROBADO</span></td>
+                        <td>1 ms</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Debe rechazar categorías demasiado cortas o demasiado largas</td>
+                        <td><span class="status-pill status-pass">APROBADO</span></td>
+                        <td>1 ms</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Debe rechazar categorías que contengan números o símbolos especiales</td>
+                        <td><span class="status-pill status-pass">APROBADO</span></td>
+                        <td>1 ms</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>Debe filtrar productos por término de búsqueda (insensible a mayúsculas/minúsculas)</td>
+                        <td><span class="status-pill status-pass">APROBADO</span></td>
+                        <td>2 ms</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>Debe devolver lista completa si el término de búsqueda está vacío</td>
+                        <td><span class="status-pill status-pass">APROBADO</span></td>
+                        <td>1 ms</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>Debe retornar arreglo vacío cuando no hay coincidencias</td>
+                        <td><span class="status-pill status-pass">APROBADO</span></td>
+                        <td>1 ms</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            Pipeline de Integración Continua Automatizado - Sistema de Gestión de Productos
+        </div>
+    </div>
+</body>
+</html>

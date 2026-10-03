@@ -1,0 +1,60 @@
+name: CI Pipeline (Build, Test & Report)
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    name: Build, Test & Generate Report
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del Codigo
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Verificacion Sintactica (Lint)
+        run: |
+          node -c js/main.js
+          node -c tests/products.test.js
+          node -c scripts/build.js
+          node -c scripts/generate-report.js
+
+      - name: Actividad 1 y 2: Compilacion y Build Automatizado
+        run: npm run build
+
+      - name: Actividad 2: Ejecucion de Pruebas Automatizadas
+        run: npm test
+
+      - name: Actividad 2: Generacion de Reportes de CI
+        run: npm run report
+
+      - name: Publicar Resumen en GitHub Step Summary
+        if: always()
+        run: |
+          if [ -f reports/ci-report.md ]; then
+            cat reports/ci-report.md >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Guardar Artefactos de Compilacion (dist)
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-distribution
+          path: dist/
+          retention-days: 14
+
+      - name: Guardar Reportes de Pruebas (reports)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-test-reports
+          path: reports/
+          retention-days: 14

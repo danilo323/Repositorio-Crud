@@ -1,4 +1,4 @@
-// Detección de entorno del navegador
+/* Versión de Compilación 1.0.0 - Distribución de Producción */
 var isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
 
 var productNameInput = isBrowser ? document.getElementById("productNameInput") : null;
@@ -114,7 +114,6 @@ function searchProduct(term) {
     displayProducts(result);
 }
 
-// Funciones lógicas puras (evaluadas en pruebas automatizadas y CI)
 function filterProducts(productList, term) {
     if (!Array.isArray(productList)) return [];
     if (!term) return productList;
@@ -138,7 +137,6 @@ function isCategoryValid(category) {
     return regex.test(category.trim());
 }
 
-// Funciones de validación del DOM
 function validateProductName() {
     if (!productNameInput) return false;
     if (isProductNameValid(productNameInput.value)) {
@@ -184,7 +182,6 @@ function setInvalid(input) {
     input.classList.remove("is-valid");
 }
 
-// Exportación para suite de pruebas en Node.js / CI
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         isProductNameValid,

@@ -1,0 +1,23 @@
+{
+  "name": "repositorio-crud",
+  "version": "1.0.0",
+  "description": "Sistema de Gestión de Productos (CRUD) con Integración Continua (CI), Build Automatizado y Reportes de Pruebas",
+  "main": "js/main.js",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "test": "node tests/products.test.js",
+    "report": "node scripts/generate-report.js",
+    "ci": "node scripts/ci.js",
+    "lint": "node -c js/main.js scripts/*.js tests/*.js"
+  },
+  "keywords": [
+    "crud",
+    "ci",
+    "continuous-integration",
+    "github-actions",
+    "automated-tests",
+    "build-pipeline"
+  ],
+  "author": "danilo323",
+  "license": "MIT"
+}

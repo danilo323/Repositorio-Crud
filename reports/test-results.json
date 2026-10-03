@@ -1,0 +1,85 @@
+{
+  "suite": "Sistema de Gestión de Productos - Pruebas Unitarias",
+  "timestamp": "2026-10-03T04:06:06.242Z",
+  "total": 15,
+  "passed": 15,
+  "failed": 0,
+  "durationMs": 17,
+  "tests": [
+    {
+      "name": "Debe aceptar nombre válido que inicia con mayúscula y tiene entre 4 y 9 letras (ej: 'Laptop')",
+      "status": "PASSED",
+      "durationMs": 0
+    },
+    {
+      "name": "Debe rechazar nombre que inicia con minúscula (ej: 'laptop')",
+      "status": "PASSED",
+      "durationMs": 0
+    },
+    {
+      "name": "Debe rechazar nombre con menos de 4 caracteres (ej: 'Pc')",
+      "status": "PASSED",
+      "durationMs": 0
+    },
+    {
+      "name": "Debe rechazar nombre con más de 9 caracteres (ej: 'Computadora')",
+      "status": "PASSED",
+      "durationMs": 0
+    },
+    {
+      "name": "Debe rechazar nombres con números, espacios o caracteres especiales",
+      "status": "PASSED",
+      "durationMs": 0
+    },
+    {
+      "name": "Debe rechazar valores nulos, vacíos o indefinidos",
+      "status": "PASSED",
+      "durationMs": 1
+    },
+    {
+      "name": "Debe aceptar precios positivos enteros y decimales válidos",
+      "status": "PASSED",
+      "durationMs": 0
+    },
+    {
+      "name": "Debe rechazar precios iguales a cero o negativos",
+      "status": "PASSED",
+      "durationMs": 0
+    },
+    {
+      "name": "Debe rechazar valores de precio no numéricos",
+      "status": "PASSED",
+      "durationMs": 0
+    },
+    {
+      "name": "Debe aceptar categorías válidas con longitud entre 3 y 15 letras y espacios",
+      "status": "PASSED",
+      "durationMs": 0
+    },
+    {
+      "name": "Debe rechazar categorías demasiado cortas o demasiado largas",
+      "status": "PASSED",
+      "durationMs": 0
+    },
+    {
+      "name": "Debe rechazar categorías que contengan números o símbolos especiales",
+      "status": "PASSED",
+      "durationMs": 0
+    },
+    {
+      "name": "Debe filtrar productos por término de búsqueda (insensible a mayúsculas/minúsculas)",
+      "status": "PASSED",
+      "durationMs": 1
+    },
+    {
+      "name": "Debe devolver lista completa si el término de búsqueda está vacío",
+      "status": "PASSED",
+      "durationMs": 0
+    },
+    {
+      "name": "Debe retornar arreglo vacío cuando no hay coincidencias",
+      "status": "PASSED",
+      "durationMs": 0
+    }
+  ]
+}
